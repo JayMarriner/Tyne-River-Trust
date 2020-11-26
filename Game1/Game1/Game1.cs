@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using Jengine;
 
 namespace Game1
 {
@@ -56,7 +57,8 @@ namespace Game1
             switch (gameState) //Allows us to run through the different gamestates and give the correct output based on the current state.
             {
                 case State.Menu:
-                    menus.Add(new Menu("background@1x2", Content.Load<Texture2D>("background@1x2")));
+                    menus.Add(new Menu("background@2x3", Content.Load<Texture2D>("background@2x3")));
+                    menus.ForEach(x => x.Initialize());
                     return;
             }
         }
@@ -81,6 +83,14 @@ namespace Game1
                 Exit();
 
             // TODO: Add your update logic here
+
+            switch (gameState)
+            {
+                case State.Menu:
+                    menus.ForEach(x => x.Update());
+                    return;
+            }
+
             base.Update(gameTime);
         }
 
@@ -92,10 +102,16 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            menus.ForEach(x => x.Draw(spriteBatch));
+
+            switch (gameState)
+            {
+                case State.Menu:
+                    spriteBatch.Begin();
+                    menus.ForEach(x => x.Draw(spriteBatch));
+                    spriteBatch.End();
+                    return;
+            }
             base.Draw(gameTime);
-            spriteBatch.End();
         }
     }
 }
