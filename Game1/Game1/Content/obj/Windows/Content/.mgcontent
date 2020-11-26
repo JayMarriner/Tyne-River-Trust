@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/background@1x2.png</File>
+    <File>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/player@2x2.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

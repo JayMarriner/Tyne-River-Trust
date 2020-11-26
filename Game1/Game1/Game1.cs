@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
 namespace Game1
 {
@@ -11,6 +13,12 @@ namespace Game1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public enum State //Declaring our different play states available.
+        {
+            Menu
+        }
+        public State gameState; //Declaring the variable for switching between states.
+        List<Menu> menus = new List<Menu>();
 
         public Game1()
         {
@@ -27,7 +35,11 @@ namespace Game1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            gameState = State.Menu;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
+            //graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
             base.Initialize();
         }
 
@@ -41,6 +53,12 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            switch (gameState) //Allows us to run through the different gamestates and give the correct output based on the current state.
+            {
+                case State.Menu:
+                    menus.Add(new Menu("background@1x2", Content.Load<Texture2D>("background@1x2")));
+                    return;
+            }
         }
 
         /// <summary>
@@ -63,7 +81,6 @@ namespace Game1
                 Exit();
 
             // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -74,10 +91,11 @@ namespace Game1
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            menus.ForEach(x => x.Draw(spriteBatch));
             base.Draw(gameTime);
+            spriteBatch.End();
         }
     }
 }
