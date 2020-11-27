@@ -45,6 +45,7 @@
     <Compile Include="Jengine\Button.cs" />
     <Compile Include="Jengine\GameObject.cs" />
     <Compile Include="Jengine\Menu.cs" />
+    <Compile Include="MenuButton.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Jengine\Animation.cs" />

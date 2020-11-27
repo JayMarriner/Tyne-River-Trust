@@ -13,15 +13,24 @@ namespace Game1
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        GraphicsDevice graphicsDevice;
         SpriteBatch spriteBatch;
         public enum State //Declaring our different play states available.
         {
-            Menu
+            Menu,
+            Play
         }
         public State gameState; //Declaring the variable for switching between states.
+        bool stateSwitch;
         List<Menu> menus = new List<Menu>();
-        List<Button> buttons = new List<Button>();
+        List<MenuButton> buttons = new List<MenuButton>();
+
+        public bool SetStateSwitch
+        {
+            set
+            {
+                stateSwitch = value;
+            }
+        }
 
         public Game1()
         {
@@ -59,12 +68,11 @@ namespace Game1
             switch (gameState) //Allows us to run through the different gamestates and give the correct output based on the current state.
             {
                 case State.Menu:
-                    IsMouseVisible = true;
                     menus.Add(new Menu("background@2x3", Content.Load<Texture2D>("background@2x3")));
                     menus.ForEach(x => x.Initialize());
-                    buttons.Add(new Button(100,500,new Vector2(300,300), Color.White, Content.Load<Texture2D>("Button")));
-                    buttons.Add(new Button(100,500,new Vector2(300,500), Color.White, Content.Load<Texture2D>("Button")));
-                    buttons.Add(new Button(100,500,new Vector2(300,700), Color.White, Content.Load<Texture2D>("Button")));
+                    buttons.Add(new MenuButton(100,500,new Vector2(300,300), Content.Load<Texture2D>("Button"), 1, 3, Content.Load<SpriteFont>("ButtonText"), "Start"));
+                    buttons.Add(new MenuButton(100,500,new Vector2(300,500), Content.Load<Texture2D>("Button"), 2, 3, Content.Load<SpriteFont>("ButtonText"), "Options"));
+                    buttons.Add(new MenuButton(100, 500, new Vector2(300, 700), Content.Load<Texture2D>("Button"), 3, 3, Content.Load<SpriteFont>("ButtonText"), "Exit"));
                     buttons.ForEach(x => x.Initialize());
                     return;
             }
@@ -117,6 +125,7 @@ namespace Game1
                     spriteBatch.Begin();
                     menus.ForEach(x => x.Draw(spriteBatch));
                     buttons.ForEach(x => x.Draw(spriteBatch));
+                    buttons.ForEach(x => x.TextDraw(spriteBatch));
                     spriteBatch.End();
                     return;
             }
