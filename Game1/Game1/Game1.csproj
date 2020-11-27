@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
+    <Compile Include="Jengine\Button.cs" />
     <Compile Include="Jengine\GameObject.cs" />
     <Compile Include="Jengine\Menu.cs" />
     <Compile Include="Program.cs" />

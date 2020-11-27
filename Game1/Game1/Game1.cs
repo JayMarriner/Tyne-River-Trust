@@ -13,6 +13,7 @@ namespace Game1
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
+        GraphicsDevice graphicsDevice;
         SpriteBatch spriteBatch;
         public enum State //Declaring our different play states available.
         {
@@ -20,6 +21,7 @@ namespace Game1
         }
         public State gameState; //Declaring the variable for switching between states.
         List<Menu> menus = new List<Menu>();
+        List<Button> buttons = new List<Button>();
 
         public Game1()
         {
@@ -57,8 +59,13 @@ namespace Game1
             switch (gameState) //Allows us to run through the different gamestates and give the correct output based on the current state.
             {
                 case State.Menu:
+                    IsMouseVisible = true;
                     menus.Add(new Menu("background@2x3", Content.Load<Texture2D>("background@2x3")));
                     menus.ForEach(x => x.Initialize());
+                    buttons.Add(new Button(100,500,new Vector2(300,300), Color.White, Content.Load<Texture2D>("Button")));
+                    buttons.Add(new Button(100,500,new Vector2(300,500), Color.White, Content.Load<Texture2D>("Button")));
+                    buttons.Add(new Button(100,500,new Vector2(300,700), Color.White, Content.Load<Texture2D>("Button")));
+                    buttons.ForEach(x => x.Initialize());
                     return;
             }
         }
@@ -88,6 +95,7 @@ namespace Game1
             {
                 case State.Menu:
                     menus.ForEach(x => x.Update());
+                    buttons.ForEach(x => x.Update());
                     return;
             }
 
@@ -108,6 +116,7 @@ namespace Game1
                 case State.Menu:
                     spriteBatch.Begin();
                     menus.ForEach(x => x.Draw(spriteBatch));
+                    buttons.ForEach(x => x.Draw(spriteBatch));
                     spriteBatch.End();
                     return;
             }

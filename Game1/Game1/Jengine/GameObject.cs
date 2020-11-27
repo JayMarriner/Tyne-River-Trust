@@ -14,10 +14,11 @@ namespace Jengine
         protected Vector2 position;
         protected Vector2 origin;
         protected Rectangle spriteRectangle;
+        protected Color color = Color.White;
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, spriteRectangle, Color.White, 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(sprite, position, spriteRectangle, color, 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
         }
 
         public virtual void Update()
