@@ -19,18 +19,11 @@ namespace Game1
             Menu,
             Play
         }
-        public State gameState; //Declaring the variable for switching between states.
-        bool stateSwitch;
+        static public State gameState; //Declaring the variable for switching between states.
+        public static bool stateSwitch;
         List<Menu> menus = new List<Menu>();
         List<MenuButton> buttons = new List<MenuButton>();
-
-        public bool SetStateSwitch
-        {
-            set
-            {
-                stateSwitch = value;
-            }
-        }
+        Player player;
 
         public Game1()
         {
@@ -65,6 +58,7 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            stateSwitch = false;
             switch (gameState) //Allows us to run through the different gamestates and give the correct output based on the current state.
             {
                 case State.Menu:
@@ -74,6 +68,10 @@ namespace Game1
                     buttons.Add(new MenuButton(100,500,new Vector2(300,500), Content.Load<Texture2D>("Button"), 2, 3, Content.Load<SpriteFont>("ButtonText"), "Options"));
                     buttons.Add(new MenuButton(100, 500, new Vector2(300, 700), Content.Load<Texture2D>("Button"), 3, 3, Content.Load<SpriteFont>("ButtonText"), "Exit"));
                     buttons.ForEach(x => x.Initialize());
+                    return;
+
+                case State.Play:
+                    player = new Player(new Vector2(100, 100), 2, Content);
                     return;
             }
         }
@@ -98,12 +96,20 @@ namespace Game1
                 Exit();
 
             // TODO: Add your update logic here
+            Console.WriteLine(gameState);
 
             switch (gameState)
             {
                 case State.Menu:
                     menus.ForEach(x => x.Update());
                     buttons.ForEach(x => x.Update());
+                    buttons.ForEach(x => x.Function());
+                    if (stateSwitch)
+                        LoadContent();
+                    return;
+
+                case State.Play:
+                    player.Update();
                     return;
             }
 
@@ -126,6 +132,12 @@ namespace Game1
                     menus.ForEach(x => x.Draw(spriteBatch));
                     buttons.ForEach(x => x.Draw(spriteBatch));
                     buttons.ForEach(x => x.TextDraw(spriteBatch));
+                    spriteBatch.End();
+                    return;
+
+                case State.Play:
+                    spriteBatch.Begin();
+                    player.Draw(spriteBatch);
                     spriteBatch.End();
                     return;
             }

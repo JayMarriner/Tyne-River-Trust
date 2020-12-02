@@ -6,11 +6,26 @@ using System.Threading.Tasks;
 using Jengine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Game1
 {
     class MenuButton : Button
     {
+        bool quit;
+
+        public bool getQuit
+        {
+            get
+            {
+                return quit;
+            }
+            set
+            {
+                quit = value;
+            }
+        }
+
         public MenuButton(int height, int width, Vector2 position, Texture2D tex, int posInList, int listTotal, SpriteFont text, String name)
         {
             this.height = height;
@@ -24,16 +39,24 @@ namespace Game1
             this.name = name;
         }
 
-        public override void Function()
+        public void Function()
         {
-            switch (currentPos)
+            KeyboardState keyInput = Keyboard.GetState();
+            if (keyInput.IsKeyDown(Keys.Space))
             {
-                case 1:
-                    return;
-                case 2:
-                    return;
-                case 3:
-                    return;
+                switch (currentPos)
+                {
+                    case 1:
+                        Game1.gameState = Game1.State.Play;
+                        Game1.stateSwitch = true;
+                        //gameState = Game1.State.Play;
+                        return;
+                    case 2:
+                        return;
+                    case 3:
+                        quit = true;
+                        return;
+                }
             }
         }
     }

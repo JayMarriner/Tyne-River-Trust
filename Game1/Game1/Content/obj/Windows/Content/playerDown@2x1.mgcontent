@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/player@2x2.png</SourceFile>
-  <SourceTime>2020-11-26T13:34:54.7780953+00:00</SourceTime>
-  <DestFile>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/bin/Windows/Content/player@2x2.xnb</DestFile>
-  <DestTime>2020-11-26T13:42:40.7389375+00:00</DestTime>
+  <SourceFile>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/playerDown@2x1.png</SourceFile>
+  <SourceTime>2020-12-02T21:15:37.9438224+00:00</SourceTime>
+  <DestFile>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/bin/Windows/Content/playerDown@2x1.xnb</DestFile>
+  <DestTime>2020-12-02T21:48:40.2372391+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T22:55:52+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

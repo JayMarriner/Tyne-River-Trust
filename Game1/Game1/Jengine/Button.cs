@@ -59,24 +59,18 @@ namespace Jengine
             }
             if (posInList == currentPos)
             {
-                color = Color.Red;
+                color = Color.White;
             }
             else
-                color = Color.White;
-
-            if (keyInput.IsKeyDown(Keys.Space))
-                Function();
+                color = Color.Gray;
 
             lastKey = keyInput;
         }
 
-        public virtual void Function()
-        {
-        }
-
         public void TextDraw(SpriteBatch sb)
         {
-            sb.DrawString(text, name, new Vector2(position.X + width/2, position.Y + height/2), Color.Black);
+
+            //sb.DrawString(text, name, new Vector2(position.X + width/2, position.Y + height/2), Color.Black);
         }
     }
 }
