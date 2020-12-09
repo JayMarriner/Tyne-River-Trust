@@ -24,14 +24,13 @@ namespace Jengine
         Stopwatch stopWatch = new Stopwatch();
         public Player(Vector2 position, int Speed, ContentManager Content)
         {
-            //playerDefault = Content.Load<Texture2D>("player@1x1");
-            //playerUp = Content.Load<Texture2D>("playerUp@2x1");
-            //playerLeft = Content.Load<Texture2D>("playerLeft@2x1");
             this.sprite = Content.Load<Texture2D>("playerDown@2x1");
             playerDown = Content.Load<Texture2D>("playerDown@2x1");
-            //playerRight = Content.Load<Texture2D>("playerRight@2x1");
-            //this.sprite = Content.Load<Texture2D>("player@1x1");
+            playerUp = Content.Load<Texture2D>("playerUp@2x1");
+            playerLeft = Content.Load<Texture2D>("playerLeft@2x1");
+            playerRight = Content.Load<Texture2D>("playerRight@2x1");
             assetname = "player@2x1";
+
             sheetColumns = 1;
             sheetRows = 1;
             spriteRectangle = new Rectangle(0, 0, sprite.Width, sprite.Height);
@@ -75,24 +74,48 @@ namespace Jengine
             else
                 Boost = 0;
 
-            if (keyInput.IsKeyDown(Keys.S))
+            if (keyInput.IsKeyDown(Keys.S) || keyInput.IsKeyDown(Keys.Down))
             {
                 this.sprite = playerDown;
                 assetname = "playerDown@2x1";
-                position.Y+= Speed + Boost;
-                //If timer hits set amount of time, switch frame.
-                if (stopWatch.ElapsedMilliseconds > 200)
-                {
-                    //Check if there are frames left to switch, if not go back to frame 0.
-                    if (SheetIndex < totalSheetFrames - 1)
-                    {
-                        SheetIndex++;
-                    }
-                    else
-                        SheetIndex = 0;
-                    stopWatch.Restart();
-                }
+                position.Y += Speed + Boost;
             }
+
+            else if (keyInput.IsKeyDown(Keys.A) || keyInput.IsKeyDown(Keys.Left))
+            {
+                this.sprite = playerLeft;
+                assetname = "playerLeft@2x1";
+                position.X -= Speed + Boost;
+            }
+
+            else if (keyInput.IsKeyDown(Keys.D) || keyInput.IsKeyDown(Keys.Right))
+            {
+                this.sprite = playerRight;
+                assetname = "playerRight@2x1";
+                position.X += Speed + Boost;
+            }
+
+            else if (keyInput.IsKeyDown(Keys.W) || keyInput.IsKeyDown(Keys.Up))
+            {
+                this.sprite = playerUp;
+                assetname = "playerUp@2x1";
+                position.Y -= Speed + Boost;
+            }
+
+            if(keyInput.IsKeyDown(Keys.W) || keyInput.IsKeyDown(Keys.Up) || keyInput.IsKeyDown(Keys.S) || keyInput.IsKeyDown(Keys.Down) || keyInput.IsKeyDown(Keys.D) || keyInput.IsKeyDown(Keys.Right) || keyInput.IsKeyDown(Keys.A) || keyInput.IsKeyDown(Keys.Left))
+            //If timer hits set amount of time, switch frame.
+            if (stopWatch.ElapsedMilliseconds > 200)
+            {
+                //Check if there are frames left to switch, if not go back to frame 0.
+                if (SheetIndex < totalSheetFrames - 1)
+                {
+                    SheetIndex++;
+                }
+                else
+                    SheetIndex = 0;
+                stopWatch.Restart();
+            }
+
             updateSheet();
         }
 

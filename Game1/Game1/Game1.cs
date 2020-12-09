@@ -96,7 +96,6 @@ namespace Game1
                 Exit();
 
             // TODO: Add your update logic here
-            Console.WriteLine(gameState);
 
             switch (gameState)
             {

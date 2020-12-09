@@ -25,3 +25,6 @@ D:\All files\University\Y2\WRL\Tyne-River-Trust\Game1\Game1\bin\Windows\x86\Debu
 D:\All files\University\Y2\WRL\Tyne-River-Trust\Game1\Game1\bin\Windows\x86\Debug\Content\Button.xnb
 D:\All files\University\Y2\WRL\Tyne-River-Trust\Game1\Game1\bin\Windows\x86\Debug\Content\ButtonText.xnb
 D:\All files\University\Y2\WRL\Tyne-River-Trust\Game1\Game1\bin\Windows\x86\Debug\Content\playerDown@2x1.xnb
+D:\All files\University\Y2\WRL\Tyne-River-Trust\Game1\Game1\bin\Windows\x86\Debug\Content\playerUp@2x1.xnb
+D:\All files\University\Y2\WRL\Tyne-River-Trust\Game1\Game1\bin\Windows\x86\Debug\Content\playerLeft@2x1.xnb
+D:\All files\University\Y2\WRL\Tyne-River-Trust\Game1\Game1\bin\Windows\x86\Debug\Content\playerRight@2x1.xnb

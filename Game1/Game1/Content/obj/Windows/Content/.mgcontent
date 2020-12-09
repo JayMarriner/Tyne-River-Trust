@@ -8,8 +8,14 @@
     <File>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/Button.png</File>
     <File>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/ButtonText.spritefont</File>
     <File>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/playerDown@2x1.png</File>
+    <File>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/playerLeft@2x1.png</File>
+    <File>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/playerRight@2x1.png</File>
+    <File>D:/All files/University/Y2/WRL/Tyne-River-Trust/Game1/Game1/Content/playerUp@2x1.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
