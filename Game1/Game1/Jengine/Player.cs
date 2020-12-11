@@ -21,6 +21,8 @@ namespace Jengine
         string assetname;
         int Speed;
         int Boost = 0;
+        Vector2 nextPos;
+        bool intersect;
         Stopwatch stopWatch = new Stopwatch();
         public Player(Vector2 position, int Speed, ContentManager Content)
         {
@@ -42,6 +44,9 @@ namespace Jengine
             updateSheet();
         }
 
+        //public Rectangle nextMove => new Rectangle(new Vector2(position.X, position.Y), sprite.Width, sprite.Height);
+        public Rectangle newMove => new Rectangle(Convert.ToInt32(nextPos.X) - sprite.Width/2, Convert.ToInt32(nextPos.Y) - sprite.Height/2, sprite.Width, sprite.Height);
+
         public void updateSheet()
         {
             // see if we can extract the number of sheet elements from the assetname
@@ -61,9 +66,19 @@ namespace Jengine
             SheetIndex = sheetIndex;
         }
 
+        public bool setIntersect
+        {
+            set
+            {
+                intersect = value;
+            }
+        }
+
         public void Initialize()
         {
             stopWatch.Start();
+            nextPos.X = position.X;
+            nextPos.Y = position.Y;
         }
 
         public override void Update()
@@ -78,28 +93,28 @@ namespace Jengine
             {
                 this.sprite = playerDown;
                 assetname = "playerDown@2x1";
-                position.Y += Speed + Boost;
+                nextPos.Y += Speed + Boost;
             }
 
             else if (keyInput.IsKeyDown(Keys.A) || keyInput.IsKeyDown(Keys.Left))
             {
                 this.sprite = playerLeft;
                 assetname = "playerLeft@2x1";
-                position.X -= Speed + Boost;
+                nextPos .X -= Speed + Boost;
             }
 
             else if (keyInput.IsKeyDown(Keys.D) || keyInput.IsKeyDown(Keys.Right))
             {
                 this.sprite = playerRight;
                 assetname = "playerRight@2x1";
-                position.X += Speed + Boost;
+                nextPos.X += Speed + Boost;
             }
 
             else if (keyInput.IsKeyDown(Keys.W) || keyInput.IsKeyDown(Keys.Up))
             {
                 this.sprite = playerUp;
                 assetname = "playerUp@2x1";
-                position.Y -= Speed + Boost;
+                nextPos.Y -= Speed + Boost;
             }
 
             if(keyInput.IsKeyDown(Keys.W) || keyInput.IsKeyDown(Keys.Up) || keyInput.IsKeyDown(Keys.S) || keyInput.IsKeyDown(Keys.Down) || keyInput.IsKeyDown(Keys.D) || keyInput.IsKeyDown(Keys.Right) || keyInput.IsKeyDown(Keys.A) || keyInput.IsKeyDown(Keys.Left))
@@ -115,8 +130,20 @@ namespace Jengine
                     SheetIndex = 0;
                 stopWatch.Restart();
             }
-
+            moveCheck();
             updateSheet();
+        }
+
+        public void moveCheck()
+        {
+
+            if (intersect)
+            {
+                nextPos = position;
+                intersect = false;
+
+            }
+            position = nextPos;
         }
 
     }

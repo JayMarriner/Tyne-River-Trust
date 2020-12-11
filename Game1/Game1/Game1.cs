@@ -19,10 +19,12 @@ namespace Game1
             Menu,
             Play
         }
+
         static public State gameState; //Declaring the variable for switching between states.
         public static bool stateSwitch;
         List<Menu> menus = new List<Menu>();
         List<MenuButton> buttons = new List<MenuButton>();
+        List<playerCollide> collider = new List<playerCollide>();
         Player player;
 
         public Game1()
@@ -71,7 +73,9 @@ namespace Game1
                     return;
 
                 case State.Play:
-                    player = new Player(new Vector2(100, 100), 2, Content);
+                    player = new Player(new Vector2(100, 100), 1, Content);
+                    collider.Add(new playerCollide(new Vector2(500,500), Content.Load<Texture2D>("playerRight@2x1"), "playerRight@2x1"));
+                    collider.Add(new playerCollide(new Vector2(900,500), Content.Load<Texture2D>("playerRight@2x1"), "playerRight@2x1"));
                     return;
             }
         }
@@ -108,7 +112,8 @@ namespace Game1
                     return;
 
                 case State.Play:
-                    player.Update();
+                    player.Update();    
+                    collider.ForEach(x => x.UpdateCollision(player));
                     return;
             }
 
@@ -137,6 +142,7 @@ namespace Game1
                 case State.Play:
                     spriteBatch.Begin();
                     player.Draw(spriteBatch);
+                    collider.ForEach(x => x.Draw(spriteBatch));
                     spriteBatch.End();
                     return;
             }
